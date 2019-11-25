@@ -15,6 +15,7 @@
 		BAA2BAA0238B37E200E35392 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAA2BA9E238B37E200E35392 /* LaunchScreen.storyboard */; };
 		BAA2BAAB238B37E300E35392 /* ThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA2BAAA238B37E300E35392 /* ThemesTests.swift */; };
 		BAA2BAB6238B37E300E35392 /* ThemesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA2BAB5238B37E300E35392 /* ThemesUITests.swift */; };
+		BAA2BAC6238C691D00E35392 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA2BAC5238C691D00E35392 /* DemoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		BAA2BAB1238B37E300E35392 /* ThemesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThemesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAA2BAB5238B37E300E35392 /* ThemesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesUITests.swift; sourceTree = "<group>"; };
 		BAA2BAB7238B37E300E35392 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BAA2BAC5238C691D00E35392 /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				BAA2BA9E238B37E200E35392 /* LaunchScreen.storyboard */,
 				BAA2BAA1238B37E200E35392 /* Info.plist */,
 				84576C92238C062500FEA8F9 /* ITheme.swift */,
+				BAA2BAC5238C691D00E35392 /* DemoViewController.swift */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				BAA2BA94238B37DD00E35392 /* AppDelegate.swift in Sources */,
 				BAA2BA96238B37DD00E35392 /* SceneDelegate.swift in Sources */,
 				84576C93238C062500FEA8F9 /* ITheme.swift in Sources */,
+				BAA2BAC6238C691D00E35392 /* DemoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

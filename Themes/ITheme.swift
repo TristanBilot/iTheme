@@ -8,9 +8,8 @@
 
 import UIKit
 
-class ITheme: UIViewController {
-    @IBOutlet weak var text: UILabel!
-    
+class ITheme {
+
     enum iThemeName: String {
       case light = "light"
       case dark = "dark"
@@ -18,22 +17,25 @@ class ITheme: UIViewController {
     }
   
     struct iTheme {
-      static var navigationBar: UIColor? = nil
+      static var button: UIColor? = nil
+      static var buttonText: UIColor? = nil
       static var background: UIColor? = nil
-      static var title: UIColor? = nil
+      static var backgroundView: UIColor? = nil
       static var text: UIColor? = nil
+      static var title: UIColor? = nil
+      static var subTitle: UIColor? = nil
       static var set: iThemeName? = nil
         
         /* Format: [ navigationBar, primaryColor, accentColor, primaryText, secondaryText, background ] */
       
-        static let blueSea = [ UIColor(rgb: 0x303F9F), UIColor(rgb: 0x3F51B5), UIColor(rgb: 0x448AFF),
-        UIColor(rgb: 0x212121), UIColor(rgb: 0x757575), UIColor(rgb: 0xFFFFFF) ]
+        static let clearLight = [ UIColor(rgb: 0x3F51B5), UIColor(rgb: 0xFFFFFF), UIColor(rgb: 0xebebeb), UIColor(rgb: 0xFFFFFF),
+                                  UIColor(rgb: 0x212121), UIColor(rgb: 0x212121), UIColor(rgb: 0x212121) ]
       
-        static let darkNight = [ UIColor(rgb: 0x000000), UIColor(rgb: 0x000000), UIColor(rgb: 0x000000),
-        UIColor(rgb: 0x000000), UIColor(rgb: 0x000000), UIColor(rgb: 0x000000) ]
+        static let darkNight = [ UIColor(rgb: 0x48484a), UIColor(rgb: 0xFFFFFF), UIColor(rgb: 0x323232), UIColor(rgb: 0x48484a),
+                                 UIColor(rgb: 0xFFFFFF), UIColor(rgb: 0xFFFFFF), UIColor(rgb: 0xFFFFFF) ]
       
-        static let clearLight = [ UIColor(rgb: 0xFFFFFF), UIColor(rgb: 0xFFFFFF), UIColor(rgb: 0xFFFFFF),
-        UIColor(rgb: 0xFFFFFF), UIColor(rgb: 0xFFFFFF), UIColor(rgb: 0xFFFFFF) ]
+        static let blueSea = [ UIColor(rgb: 0xFFFFFF), UIColor(rgb: 0x212121), UIColor(rgb: 0x00796B), UIColor(rgb: 0xFFFFFF),
+                               UIColor(rgb: 0x212121), UIColor(rgb: 0xFFFFFF), UIColor(rgb: 0xFFFFFF) ]
       
         static func light() {
           loadPalette(clearLight)
@@ -51,10 +53,13 @@ class ITheme: UIViewController {
         }
       
         static func loadPalette(_ palette: [UIColor?]) {
-          navigationBar = palette[0]
-          title = palette[1]
-          text = palette[4]
-          background = palette[5]
+            button         = palette[0]
+            buttonText     = palette[1]
+            background     = palette[2]
+            backgroundView = palette[3]
+            text           = palette[4]
+            title          = palette[5]
+            subTitle       = palette[6]
         }
       
         static func saveTheme(_ themeName: String?) {
@@ -65,20 +70,7 @@ class ITheme: UIViewController {
           set = iThemeName(rawValue: themeName!)
         }
     }
-  
-  @IBAction func bluePress(_ sender: UIButton) {
-    iTheme.blue()
-    self.viewDidLoad()
-  }
-  @IBAction func darkPress(_ sender: UIButton) {
-    iTheme.dark()
-    self.viewDidLoad()
-  }
-  @IBAction func lightPress(_ sender: UIButton) {
-    iTheme.light()
-    self.viewDidLoad()
-  }
-  
+
     func switchTheme(_ key: iThemeName?) {
       if key == nil {
         loadDefaultTheme()
@@ -98,20 +90,10 @@ class ITheme: UIViewController {
           break
         }
       }
-      refreshWithTheme()
     }
   
     func loadDefaultTheme() {
-      switchTheme(.light)
-    }
-  
-    func refreshWithTheme() {
-      self.text.textColor = iTheme.text
-      self.view.backgroundColor = iTheme.background
-      UINavigationBar.appearance().barTintColor = iTheme.navigationBar
-      UINavigationBar.appearance().tintColor = iTheme.navigationBar
-//      UINavigationBar.appearance().isTranslucent = true
-      UINavigationBar.appearance().backgroundColor = UIColor.red
+      switchTheme(.dark)
     }
     
     func getPref() -> iThemeName? {
@@ -124,22 +106,15 @@ class ITheme: UIViewController {
     
     func loadPref() {
       switchTheme(getPref())
-      refreshWithTheme()
-      super.viewDidLoad()
-    }
-    
-    override func viewDidLoad() {
-      super.viewDidLoad()
-      self.loadPref()
     }
 
 }
 
 extension UIColor {
   convenience init(red: Int, green: Int, blue: Int) {
-    assert(red >= 0 && red <= 255, "Invalid red component")
-    assert(green >= 0 && green <= 255, "Invalid green component")
-    assert(blue >= 0 && blue <= 255, "Invalid blue component")
+    assert(red >= 0 && red <= 255)
+    assert(green >= 0 && green <= 255)
+    assert(blue >= 0 && blue <= 255)
 
     self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
 }
