@@ -1,3 +1,6 @@
+[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://github.com/TristanBilot)
+
+
 # iTheme
 iTheme is a simple Theme manager. You can easily:
  - [x] switch between different themes
