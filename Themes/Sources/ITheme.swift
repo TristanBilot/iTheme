@@ -2,7 +2,7 @@
 //  ITheme.swift
 //  Themes
 //
-//  Created by Tristan Bilot on 24/11/2019.
+//  Created by Tristan on 24/11/2019.
 //  Copyright © 2019 Tristan Bilot. All rights reserved.
 //
 
@@ -58,9 +58,9 @@ class ITheme {
     ]
   
     fileprivate static let materialPal =
-    [   UIColor(rgb: 0xFFFFFF), UIColor(rgb: 0x212121), UIColor(rgb: 0x00796B),
-        UIColor(rgb: 0xFFFFFF), UIColor(rgb: 0x212121), UIColor(rgb: 0xFFFFFF),
-        UIColor(rgb: 0xFFFFFF)
+    [   UIColor(rgb: 0xFFFFFF), UIColor(rgb: 0x212121), UIColor(rgb: 0xf8bbd0),
+        UIColor(rgb: 0xFFFFFF), UIColor(rgb: 0x212121), UIColor(rgb: 0x212121),
+        UIColor(rgb: 0x212121)
     ]
     
     /*
@@ -92,9 +92,26 @@ class ITheme {
         saveTheme("material")
     }
   
-    static func loadPref() {
-        ITheme.switchTheme(getPref())
+    /*
+     Fetch the last used theme (often used at the launch of the application).
+     */
+          
+    fileprivate static func getPref() -> String? {
+        let defaults = UserDefaults.standard
+        if let name = defaults.string(forKey: "iTheme") {
+            return name
+        }
+        return nil
     }
+  
+    static func loadPref() {
+        switchTheme(getPref())
+    }
+  
+    /*
+     Save the last used theme in UserDesfaults to take it back even if
+     the user close the app.
+     */
   
     static func saveTheme(_ themeName: String?) {
         guard let name = themeName else { return }
@@ -103,44 +120,35 @@ class ITheme {
     }
 
     fileprivate static func switchTheme(_ key: String?) {
-        if key == nil {
-            ITheme.loadDefaultTheme()
-            return
+        guard let key = key else {
+          loadDefaultTheme()
+          return
         }
-        themes[key!]!()
+        themes[key]!()
     }
-          
-    fileprivate static func getPref() -> String? {
-        let defaults = UserDefaults.standard
-        if let name = defaults.string(forKey: "iTheme") {
-            print(name)
-            return name
-        }
-        return nil
-    }
+  
+    /*
+     The default theme is light.
+     */
     
     fileprivate static func loadDefaultTheme() {
         switchTheme("light")
     }
+  
+    /*
+     You could apply linear gradient background to your views with
+     this method.
+     */
+  
+    static func setGradientBackground(_ view: UIView) {
+        let colorTop: CGColor =  ITheme.pageBackground!.cgColor
+        let colorBottom: CGColor = ITheme.viewBackground!.cgColor
+      
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = view.bounds
+        view.layer.insertSublayer(gradientLayer, at:0)
+  }
     
 }
-
-extension UIColor {
-  convenience init(red: Int, green: Int, blue: Int) {
-    assert(red >= 0 && red <= 255)
-    assert(green >= 0 && green <= 255)
-    assert(blue >= 0 && blue <= 255)
-
-    self.init(red: CGFloat(red) / 255.0, green: CGFloat(green)
-        / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-}
-
-  convenience init(rgb: Int) {
-    self.init(
-      red: (rgb >> 16) & 0xFF,
-      green: (rgb >> 8) & 0xFF,
-      blue: rgb & 0xFF
-    )
-  }
-}
-

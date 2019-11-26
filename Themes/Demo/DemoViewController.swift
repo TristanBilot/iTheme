@@ -16,7 +16,8 @@ class DemoViewController: UIViewController {
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var cardView: UIView!
-    
+    @IBOutlet weak var headerView: UIView!
+  
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
@@ -45,6 +46,8 @@ class DemoViewController: UIViewController {
     
     private func initTheme() {
         view.backgroundColor = ITheme.pageBackground
+        headerView.roundCorners([.bottomLeft, .bottomRight], radius: 20)
+        headerView.backgroundColor = ITheme.viewBackground
         
         topView.layer.cornerRadius = 10
         cardView.layer.cornerRadius = 10
