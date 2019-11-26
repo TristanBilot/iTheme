@@ -13,6 +13,7 @@ iTheme is a simple Theme manager. You can easily:
 
 ```swift
 self.view.backgroundColor = ITheme.backgroundColor
+self.description.textColor = ITheme.subtitle
 ```
 
 <h2>Set gradient background</h2>
