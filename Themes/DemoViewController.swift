@@ -28,53 +28,54 @@ class DemoViewController: UIViewController {
     @IBOutlet weak var cardViewNum1: UILabel!
     @IBOutlet weak var notificationsLabel: UILabel!
     
-    @IBAction func bluePress(_ sender: UIButton) {
-        ITheme.iTheme.blue()
-        viewDidLoad()
+    @IBAction func materialPress(_ sender: UIButton) {
+        ITheme.material()
+        initTheme()
     }
     
     @IBAction func darkPress(_ sender: UIButton) {
-        ITheme.iTheme.dark()
-        viewDidLoad()
+        ITheme.dark()
+        initTheme()
     }
     
     @IBAction func lightPress(_ sender: UIButton) {
-        ITheme.iTheme.light()
-        viewDidLoad()
+        ITheme.light()
+        initTheme()
     }
     
     private func initTheme() {
-        view.backgroundColor = ITheme.iTheme.background
+        view.backgroundColor = ITheme.pageBackground
         
         topView.layer.cornerRadius = 10
         cardView.layer.cornerRadius = 10
-        topView.backgroundColor = ITheme.iTheme.backgroundView
-        titleLabel.textColor = ITheme.iTheme.title
-        descLabel.textColor = ITheme.iTheme.subTitle
-        totalAmountLabel.textColor = ITheme.iTheme.text
-        totalLabel.textColor = ITheme.iTheme.text
-        cardView.backgroundColor = ITheme.iTheme.backgroundView
+        topView.backgroundColor = ITheme.viewBackground
+        titleLabel.textColor = ITheme.title
+        descLabel.textColor = ITheme.subTitle
+        totalAmountLabel.textColor = ITheme.text
+        totalLabel.textColor = ITheme.text
+        cardView.backgroundColor = ITheme.viewBackground
         
         button1.layer.cornerRadius = 10
         button2.layer.cornerRadius = 10
         button3.layer.cornerRadius = 10
-        button1.backgroundColor = ITheme.iTheme.button
-        button2.backgroundColor = ITheme.iTheme.button
-        button3.backgroundColor = ITheme.iTheme.button
-        button1.setTitleColor(ITheme.iTheme.buttonText, for: .normal)
-        button2.setTitleColor(ITheme.iTheme.buttonText, for: .normal)
-        button3.setTitleColor(ITheme.iTheme.buttonText, for: .normal)
+        button1.backgroundColor = ITheme.buttonBackground
+        button2.backgroundColor = ITheme.buttonBackground
+        button3.backgroundColor = ITheme.buttonBackground
+        button1.setTitleColor(ITheme.buttonText, for: .normal)
+        button2.setTitleColor(ITheme.buttonText, for: .normal)
+        button3.setTitleColor(ITheme.buttonText, for: .normal)
         
-        cardViewTitle.textColor = ITheme.iTheme.text
-        cardViewPrice1.textColor = ITheme.iTheme.text
-        cardViewPrice2.textColor = ITheme.iTheme.text
-        cardViewNum2.textColor = ITheme.iTheme.text
-        cardViewNum1.textColor = ITheme.iTheme.text
-        notificationsLabel.textColor = ITheme.iTheme.subTitle
+        cardViewTitle.textColor = ITheme.text
+        cardViewPrice1.textColor = ITheme.text
+        cardViewPrice2.textColor = ITheme.text
+        cardViewNum2.textColor = ITheme.text
+        cardViewNum1.textColor = ITheme.text
+        notificationsLabel.textColor = ITheme.subTitle
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ITheme.loadPref()
         initTheme()
     }
     
